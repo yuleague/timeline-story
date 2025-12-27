@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时间线故事 - 预览</title>
+    <link rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #timeline-embed {
+            width: 100%;
+            height: 700px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>时间线故事 - 发展历程</h1>
+        <div id="timeline-embed"></div>
+        <div class="info">
+            <p><strong>数据信息：</strong>此时间线展示了10个模拟事件，涵盖项目开发的全过程。所有数据存储在<code>timeline-story.json</code>文件中。</p>
+            <p><strong>技术：</strong>使用TimelineJS 3.0 + Flask + Supabase</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+    <script>
+        var options = {
+            language: "zh-cn",
+            start_at_end: false,
+            timenav_height_percentage: 50,
+            default_bg_color: "#f5f7fa",
+            scale_factor: 2
+        };
+        
+        var timeline = new TL.Timeline('timeline-embed', 'app/static/data/timeline-story.json', options);
+        
+        // 添加键盘控制
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                timeline.goToPrev();
+            } else if (e.key === 'ArrowRight') {
+                timeline.goToNext();
+            }
+        });
+    </script>
+</body>
+</html>
